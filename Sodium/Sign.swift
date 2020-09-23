@@ -128,10 +128,12 @@ extension Sign {
      */
     public func toX25519(ed25519PublicKey: PublicKey) -> PublicKey? {
         var x25519PublicKey = PublicKey(count: 32)
+        
         guard .SUCCESS == crypto_sign_ed25519_pk_to_curve25519 (
             &x25519PublicKey,
             ed25519PublicKey
         ).exitCode else { return nil }
+        
         return x25519PublicKey
     }
     
@@ -144,10 +146,12 @@ extension Sign {
      */
     public func toX25519(ed25519SecretKey: SecretKey) -> SecretKey? {
         var x25519SecretKey = SecretKey(count: 32)
+        
         guard .SUCCESS == crypto_sign_ed25519_sk_to_curve25519 (
             &x25519SecretKey,
             ed25519SecretKey
         ).exitCode else { return nil }
+        
         return x25519SecretKey
     }
 }
