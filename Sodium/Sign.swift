@@ -117,6 +117,41 @@ extension Sign {
     }
 }
 
+extension Sign {
+    
+    /**
+     Converts an Ed25519 public key to an X25519 public key.
+     
+     - Parameter ed25519PublicKey: The Ed25519 public key to convert.
+
+     - Returns: The X25519 public key if conversion is successful.
+     */
+    public func toX25519(ed25519PublicKey: PublicKey) -> PublicKey? {
+        var x25519PublicKey = PublicKey(count: 32)
+        guard .SUCCESS == crypto_sign_ed25519_pk_to_curve25519 (
+            &x25519PublicKey,
+            ed25519PublicKey
+        ).exitCode else { return nil }
+        return x25519PublicKey
+    }
+    
+    /**
+     Converts an Ed25519 secret key to an X25519 secret key.
+     
+     - Parameter ed25519SecretKey: The Ed25519 secret key to convert.
+
+     - Returns: The X25519 secret key if conversion is successful.
+     */
+    public func toX25519(ed25519SecretKey: SecretKey) -> SecretKey? {
+        var x25519SecretKey = SecretKey(count: 32)
+        guard .SUCCESS == crypto_sign_ed25519_sk_to_curve25519 (
+            &x25519SecretKey,
+            ed25519SecretKey
+        ).exitCode else { return nil }
+        return x25519SecretKey
+    }
+}
+
 extension Sign: KeyPairGenerator {
     public typealias PublicKey = Bytes
     public typealias SecretKey = Bytes
