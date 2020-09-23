@@ -1281,6 +1281,7 @@
 					"$(PROJECT_DIR)/Sodium",
 					"$(PROJECT_DIR)/Sodium/libsodium",
 				);
+				MARKETING_VERSION = 0.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pureftpd.swiftodium.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Sodium;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1316,6 +1317,7 @@
 					"$(PROJECT_DIR)/Sodium",
 					"$(PROJECT_DIR)/Sodium/libsodium",
 				);
+				MARKETING_VERSION = 0.9.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pureftpd.swiftodium.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Sodium;
 				PROVISIONING_PROFILE_SPECIFIER = "";
