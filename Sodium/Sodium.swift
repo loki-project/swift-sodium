@@ -21,6 +21,12 @@ public struct Sodium {
     public init() {
         _ = Sodium.once
     }
+
+    private func exposeExtendedMethods() {
+        // Note: Need to add these to prevent Xcode from stripping out these functions
+        _ = crypto_core_ed25519_scalar_mul
+        _ = crypto_scalarmult_ed25519_noclamp
+    }
 }
 
 extension Sodium {
