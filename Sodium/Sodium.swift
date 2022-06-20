@@ -22,10 +22,24 @@ public struct Sodium {
         _ = Sodium.once
     }
 
-    private func exposeExtendedMethods() {
-        // Note: Need to add these to prevent Xcode from stripping out these functions
-        _ = crypto_core_ed25519_scalar_mul
-        _ = crypto_scalarmult_ed25519_noclamp
+    public static func lib_crypto_core_ed25519_scalar_mul(_ z: UnsafeMutablePointer<UInt8>, _ x: UnsafePointer<UInt8>, _ y: UnsafePointer<UInt8>) {
+        crypto_core_ed25519_scalar_mul(z, x, y)
+    }
+    
+    public static func lib_crypto_core_ed25519_scalar_add(_ z: UnsafeMutablePointer<UInt8>, _ x: UnsafePointer<UInt8>, _ y: UnsafePointer<UInt8>) {
+        crypto_core_ed25519_scalar_add(z, x, y)
+    }
+    
+    public static func lib_crypto_scalarmult_ed25519_noclamp(_ q: UnsafeMutablePointer<UInt8>, _ n: UnsafePointer<UInt8>, _ p: UnsafePointer<UInt8>) -> Int32 {
+        return crypto_scalarmult_ed25519_noclamp(q, n, p)
+    }
+    
+    public static func lib_crypto_core_ed25519_scalar_reduce(_ r: UnsafeMutablePointer<UInt8>, _ s: UnsafePointer<UInt8>) {
+        crypto_core_ed25519_scalar_reduce(r, s)
+    }
+    
+    public static func lib_crypto_scalarmult_ed25519_bytes() -> Int {
+        return crypto_scalarmult_ed25519_bytes()
     }
 }
 
