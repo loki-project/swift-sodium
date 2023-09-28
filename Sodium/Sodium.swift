@@ -41,6 +41,10 @@ public struct Sodium {
     public static func lib_crypto_scalarmult_ed25519_bytes() -> Int {
         return crypto_scalarmult_ed25519_bytes()
     }
+    
+    public static func lib_crypto_sign_ed25519_seed_keypair(_ pk: UnsafeMutablePointer<UInt8>, _ sk: UnsafeMutablePointer<UInt8>, _ seed: UnsafePointer<UInt8>) -> Int32 {
+        return crypto_sign_ed25519_seed_keypair(pk, sk, seed)
+    }
 }
 
 extension Sodium {
